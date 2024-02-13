@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // function makeUser() {
+    //     return {
+    //         name: "John",
+    //         ref: this
+    //     };
+    // }
+    //
+    // let user = makeUser();
+    //
+    // alert( user.ref.name ); //// Error: Cannot read property 'name' of undefined
+
+    function makeUser() {
+        return {
+            name: "John",
+            ref() {
+                return this;
+            }
+        };
+    }
+
+    let user = makeUser();
+
+    alert( user.ref().name ); // John
+
+    //create a calculator
+
+    let calculator = {
+
+        read(){
+            this.a = +prompt("Please, enter first value:",0);
+            this.b = +prompt("Please, enter second value:",0);
+        },
+
+        sum(){
+
+            return this.a + this.b;
+        },
+
+        mul(){
+
+            return this.a * this.b;
+        }
+    }
+
+
+    calculator.read();
+    alert( calculator.sum() );
+    alert( calculator.mul() );
+
+
+
+    //chaining
+    let ladder = {
+        step: 0,
+        up() {
+            this.step++;
+            return this;
+        },
+        down() {
+            this.step--;
+            return this;
+        },
+        showStep: function() { // shows the current step
+            alert( this.step );
+            return this;
+        }
+    };
+
+    ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
+
+</script>
+
+</body>
+</html>

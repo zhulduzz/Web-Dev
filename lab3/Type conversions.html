@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    ex1 = "" + 1 + 0 //"10"
+    ex2 = "" - 1 + 0 // -1
+    ex3 = true + false // 1
+    ex4 = 6 / "3" // 2
+    ex5 = "2" * "3" //6
+    ex6 = 4 + 5 + "px" //"9px"
+    ex7 = "$" + 4 + 5 //"$45"
+    ex8 = "4" - 2 // 2
+    ex9 = "4px" - 2 // nan
+    ex10 = "  -9  " + 5 // "-95"
+    ex11 = "  -9  " - 5 // -14
+    ex12 = null + 1 // 1
+    ex13 = undefined + 1 // nan
+    ex14 = " \t \n" - 2 // -2
+
+    //Fix the addition
+
+    let a = prompt("First number?", 1);
+    let b = prompt("Second number?", 2);
+
+    alert(+a + +b); // 12
+</script>
+
+</body>
+</html>
