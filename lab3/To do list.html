@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To do list</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: radial-gradient(circle at center, rgba(100,168,42,0.6), transparent);
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .card {
+            max-width: 500px;
+            margin: auto;
+            margin-top: 50px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, .25);
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.45);
+            box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(15px);
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        #newtask {
+            margin-bottom: 20px;
+        }
+
+        #newtask input {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            border: 2px solid #d1d3d4;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        #newtask button {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: whitesmoke;
+            background-color: #57c742;
+            padding: 0.8rem 1.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+        }
+
+        .listOfTasks {
+            margin-bottom: 20px;
+
+        }
+
+        ul li {
+            cursor: pointer;
+            position: relative;
+            padding: 12px 8px 12px 40px;
+            background: #eee;
+            font-size: 18px;
+            transition: 0.2s;
+
+            /* make the list items unselectable */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        ul li:nth-child(odd) {
+            background: #f9f9f9;
+        }
+
+        /* Darker background-color on hover */
+        ul li:hover {
+            background: #ddd;
+        }
+
+        /* When clicked on, add a background color and strike out text */
+        ul li.checked {
+            background: #888;
+            color: #fff;
+            text-decoration: line-through;
+        }
+
+        /* Add a "checked" mark when clicked on */
+        ul li.checked::before {
+            content: '';
+            position: absolute;
+            border-color: #fff;
+            border-style: solid;
+            border-width: 0 2px 2px 0;
+            top: 10px;
+            left: 16px;
+            transform: rotate(45deg);
+            height: 15px;
+            width: 7px;
+        }
+
+        .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 12px 16px 12px 16px;
+        }
+
+        .close:hover {
+            background-color: #f44336;
+            color: white;
+        }
+
+    </style>
+
+    <script>
+        function setCloseButtons() {
+            let close = document.getElementsByClassName("close");
+            for (let i = 0; i < close.length; i++) {
+                close[i].onclick = function() {
+                    let div = this.parentElement;
+                    div.style.display = "none";
+                }
+            }
+        }
+
+        function newElement(){
+            let inputTasks = document.getElementById("myInput").value;
+            if(inputTasks.trim() !== ""){
+                let li = document.createElement("li");
+                let t = document.createTextNode(inputTasks);
+                li.appendChild(t);
+
+                let span = document.createElement("SPAN");
+                let txt = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.appendChild(txt);
+                li.appendChild(span);
+
+                document.getElementById("myUL").appendChild(li);
+                document.getElementById("myInput").value = "";
+
+                li.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                });
+
+                setCloseButtons(); // Вызываем функцию для установки обработчиков событий для кнопок удаления
+            } else {
+                alert("You must write something!");
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="title">
+    <h1>To do List</h1>
+</div>
+
+<div class="card">
+    <p> ToDo List </p>
+    <div id="newtask">
+        <input type="text" id="myInput" placeholder="New Task">
+        <button id="Add" onclick="newElement()">Add</button>
+    </div>
+
+    <div class="listOfTasks">
+        <ul id="myUL">
+
+            <!--<li class="checked">Pay bills</li>-->
+            
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
